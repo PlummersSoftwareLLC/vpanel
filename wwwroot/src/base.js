@@ -24,19 +24,19 @@ function openWebSocket(handleMessage, opts = {}) {
 
     // Format milliseconds into a human-readable duration
     function formatDuration(ms) {
-        const sec = Math.floor(ms / 1000);
-        const min = Math.floor(sec / 60);
-        const s = sec % 60;
+        const totalSeconds = ms / 1000;
+        const min = Math.floor(totalSeconds / 60);
+        const s = (totalSeconds % 60).toFixed(2);
         if (min < 60)
-            return `${min}:${s.toString().padStart(2, '0')}`;
+            return `${min}:${s.padStart(5, '0')}`;
         const hr = Math.floor(min / 60);
         const m = min % 60;
         if (hr < 24)
-            return `${hr}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            return `${hr}:${m.toString().padStart(2, '0')}:${s.padStart(5, '0')}`;
         const days = Math.floor(hr / 24);
         const h = hr % 24;
 
-        return `${days} days, ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        return `${days} days, ${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.padStart(5, '0')}`;
     }
 
     // Update the status label with the last message time and FPS
@@ -112,7 +112,7 @@ function openWebSocket(handleMessage, opts = {}) {
 
             ws.onopen = () => {
                 statusLabel && (statusLabel.textContent = 'Connected');
-                statusInterval = setInterval(updateStatusLabel, 1000); // update every 100ms for tenths
+                statusInterval = setInterval(updateStatusLabel, 30); // update every 100ms for tenths
                 startFpsCounter();
             };
 
