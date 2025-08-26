@@ -77,6 +77,7 @@ jobs:
         build-mode: ${{ matrix.build-mode }}
         config: |
           paths:
+            - .github/workflows
             - proxy
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
