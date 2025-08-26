@@ -43,7 +43,7 @@ static ssize_t proc_read(struct file *file, char __user *buffer, size_t count, l
         len = snprintf(output, sizeof(output),
             "RIP=0x%lx RSP=0x%lx RBP=0x%lx RAX=0x%lx RBX=0x%lx RCX=0x%lx RDX=0x%lx "
             "RSI=0x%lx RDI=0x%lx R8=0x%lx R9=0x%lx R10=0x%lx R11=0x%lx R12=0x%lx "
-            "R13=0x%lx R14=0x%lx R15=0x%lx EFLAGS=0x%lx CS=0x%lx SS=0x%lx ORIG_RAX=0x%lx\n",
+            "R13=0x%lx R14=0x%lx R15=0x%lx EFLAGS=0x%lx CS=0x%lx SS=0x%x ORIG_RAX=0x%lx\n",
             captured_regs.ip, captured_regs.sp, captured_regs.bp, captured_regs.ax,
             captured_regs.bx, captured_regs.cx, captured_regs.dx, captured_regs.si,
             captured_regs.di, captured_regs.r8, captured_regs.r9, captured_regs.r10,
