@@ -97,7 +97,10 @@ jobs:
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
     - if: matrix.build-mode == 'manual'
       shell: bash
-      run: make -C proxy
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libasio-dev zlib1g-dev
+        make -C proxy
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
